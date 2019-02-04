@@ -1,21 +1,18 @@
 /*----- constants -----*/
-const velocity = 50;
+const velocity = 150;
 const gravity = 0.5;
+
 /*----- app's state (variables) -----*/
 let distance = 0;
 let repaintTime = 0;
-let obstaclesOnScreen = [];
 
 
 /*----- cached element references -----*/
 let game = document.getElementById('canvas').getContext('2d');
-// let ground = document.getElementById('ground');
-// let character = document.getElementById('character');
 
 /*----- event listeners -----*/
 // document.addEventListener('keydown', characterRun);
 document.addEventListener('keydown', characterJump);
-document.addEventListener('keyup', characterDrop);
 /*----- functions -----*/
 
 function init(){
@@ -36,6 +33,8 @@ function scrollBackground(time){
     sky.redraw();
     character.animate();
     fire.appear();
+    fire2.appear();
+    // checkForLoser();
     requestAnimationFrame(scrollBackground);
     game.restore();
   };
@@ -47,28 +46,16 @@ function getDistanceTraveled(time){
   return distanceTraveled;
 };
 
-// function createObstacle(time){
-//   if()
-// }
-
-
-// function characterRun(e){
-//   if(e.keyCode === 39){
-//     requestAnimationFrame(scrollBackground);
-//   };
-// };
-
 function characterJump(e){
     if(e.keyCode === 32){
       character.y = 40
       setTimeout(function(){
         character.y = 125
-      }, 2500)
+      }, 500)
     }
 };
 
-// function characterDrop(e){
-//   if(e.keyCode === 32){
-//     character.y = 125;
+// function checkForLoser(){
+//   if(charcter.x -
 //   }
 // }
