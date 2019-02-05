@@ -5,10 +5,10 @@ class Scroll {
     this.speedX = speedX;
     this.imgID = document.getElementById(imgID);
   }
-  draw(){
+  draw(x,y){
     game.drawImage(this.imgID, this.x, this.y)
   }
-  redraw(){
+  redraw(x,y){
     game.drawImage(this.imgID, this.x + 601, this.y)
   }
   move(){

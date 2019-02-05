@@ -3,6 +3,7 @@
 
 /*----- app's state (variables) -----*/
 let score = 0;
+let replayCheck = false;
 
 /*----- cached element references -----*/
 let game = document.getElementById('canvas').getContext('2d');
@@ -40,13 +41,33 @@ function render(){
     game.drawImage(wQuote.imgID, wQuote.x, wQuote.y)
   }, 1000)
   setTimeout(function(){
-    game.interval = setInterval(buildWorld, 10);
+    game.interval = setInterval(buildWorld, 12);
     button.removeEventListener('click', render);
+    button.removeEventListener('click', scoreTimer);
   }, 2000)
 };
 
+function replayButton(){
+  if(button.textContent === 'Play Again?'){
+    button.addEventListener('click', replay);
+  };
+};
+
 function replay(){
-  game.clearRect(0, 0, game.width, game.height)
+  game.clearRect(0, 0, 600, 300);
+  score = 0;
+  game.translate(0, 0);
+  sky.x = 0;
+  sky.y = 0;
+  ground.x = 0;
+  ground.y = 0;
+  sky.draw();
+  ground.draw();
+  character.add();
+  fire.spawn();
+  game.interval = setInterval(buildWorld, 10)
+  button.removeEventListener('click', replay);
+  replayCheck = true;
 }
 
 function buildWorld(){
@@ -63,7 +84,15 @@ function buildWorld(){
   character.move();
   fire.draw();
   fire.spawn();
-  checkCollision();
+  if(replayCheck === true){
+    setTimeout(function(){
+      checkCollision();
+      replayCheck = false;
+    }, 1000)
+  } else {
+    checkCollision();
+    replayCheck = false;
+  };
 };
 
 function characterJump (e) {
@@ -86,19 +115,14 @@ function gameOver() {
   game.font = '90pt MedievalSharp'
   game.fillText("Game Over", 0, 150)
   button.textContent = 'Play Again?'
-  button.addEventListener('click', replay);
+  replayButton();
 }
 
 function scoreTimer(){
-  let second = 0;
-  let minute = 0;
   let timer = setInterval(function(){
     score = score + 100;
-    second++;
-    if(second === 60){
-      minute++
-      second = 0;
-      score = score + 100;
-    }
-  }, 1000)
-}
+  }, 1000);
+  if(replayCheck === true){
+    clearInterval(timer);
+  }
+};
