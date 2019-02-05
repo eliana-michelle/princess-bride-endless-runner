@@ -1,59 +1,51 @@
 class Scroll {
-  constructor (x, y, imgID){
+  constructor (x, y, imgID, speedX){
     this.x = x;
     this.y = y;
+    this.speedX = speedX;
     this.imgID = document.getElementById(imgID);
   }
   draw(){
     game.drawImage(this.imgID, this.x, this.y)
   }
   redraw(){
-    game.drawImage(this.imgID, this.imgID.width - 1, this.y)
+    game.drawImage(this.imgID, this.x + 601, this.y)
+  }
+  move(){
+    this.x += this.speedX;
+    if(this.x === -(this.imgID.width)){
+      this.x = 0;
+    }
   }
 };
 
-let ground = new Scroll (0, 0, 'ground');
-let sky = new Scroll (0, 0, 'sky');
+let ground = new Scroll (0, 0, 'ground', -1);
+let sky = new Scroll (0, 0, 'sky', -1);
 
-/*----- players -----*/
+/*----- players & obstacles -----*/
 
 class Sprite extends Scroll {
-  constructor (x, y, imgID, width, height){
-    super(x, y, imgID);
+  constructor (x, y, imgID, speed, width, height, sourceW, sourceH){
+    super(x, y, imgID, speed);
     this.width = width;
     this.height = height;
+    this.sourceW = sourceW;
+    this.sourceH = sourceH;
+    this.sourceX = 0;
+    this.sourceY = 0;
   }
-};
-
-class Player extends Sprite {
-    constructor (x, y, imgID, width, height, sourceWidth, sourceHeight){
-      super(x, y, imgID, width, height);
-      this.sourceWidth = sourceWidth;
-      this.sourceHeight = sourceHeight;
-      this.sourceX = 0;
-      this.sourceY = 0;
-    }
-    animate(){
-      game.drawImage(this.imgID, this.sourceX, this.sourceY, this.sourceWidth, this.sourceHeight, this.x - distance, this.y, 100, 100)
+  add(){
+    game.drawImage(this.imgID, this.sourceX, this.sourceY, this.sourceW, this.sourceH, this.x, this.y, 100, 100)
+  };
+  spawn(){
+    this.x += this.speedX;
+    if(this.x === -50){
+      let min = Math.ceil(400);
+      let max = Math.floor(1000)
+      this.x = Math.floor(Math.random() * (max - min + 1))+ min;
     };
-    // updateImage(){
-    //   let currentFrame = 0;
-    //   currentFrame = ++currentFrame % 2;
-    //   sou
-    // }
-};
-
-let character = new Player (50, 125, 'character', 100, 100, 100, 100)
-
-/*----- obstacles -----*/
-class Obstacles extends Sprite {
-  constructor (x, y, imgID, width, height){
-    super(x, y, imgID, width, height);
-  }
-  appear(){
-    game.drawImage(this.imgID, this.x + distance, this.y);
   };
 };
 
-let fire = new Obstacles (601, 160, 'fire', 100, 100);
-let fire2 = new Obstacles(1000, 160, 'fire', 100, 100);
+let character = new Sprite (50, 125, 'character', 0, 100, 100, 100, 100)
+let fire = new Sprite (601, 160, 'fire', -1, 90, 90, 100, 100);
