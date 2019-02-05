@@ -1,6 +1,7 @@
 /*----- constants -----*/
 const velocity = 150;
 const gravity = 0.5;
+var hello = "hi"
 
 /*----- app's state (variables) -----*/
 let distance = 0;
