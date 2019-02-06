@@ -17,18 +17,18 @@ button.addEventListener('click', scoreTimer);
 /*----- functions -----*/
 
 function init(){
-  game.globalAlpha = .3;
-  ground.draw();
-  sky.draw();
-  game.globalAlpha = 1;
-  game.font = '30px MedievalSharp';
-  game.fillText('Help Westley & Buttercup', 125, 50)
-  game.font = '30px MedievalSharp';
-  game.fillText('Escape the Fire Swamp', 135, 95)
-  game.font = '20px MedievalSharp';
-  game.fillText('Use the SPACEBAR to jump over the obstacles as they appear', 20, 140)
-  game.font = '35px MedievalSharp';
-  game.fillText('Click START to enter the Fire Swamp', 10, 200)
+    game.globalAlpha = .3;
+    ground.draw();
+    sky.draw();
+    game.globalAlpha = 1;
+    game.font = '30px MedievalSharp';
+    game.fillText('Help Westley & Buttercup', 125, 50)
+    game.font = '30px MedievalSharp';
+    game.fillText('Escape the Fire Swamp', 135, 95)
+    game.font = '20px MedievalSharp';
+    game.fillText('Use the SPACEBAR to jump over the obstacles as they appear', 20, 140)
+    game.font = '35px MedievalSharp';
+    game.fillText('Click START to enter the Fire Swamp', 10, 200);
 };
 
 function render(){
@@ -44,7 +44,7 @@ function render(){
     game.interval = setInterval(buildWorld, 12);
     button.removeEventListener('click', render);
     button.removeEventListener('click', scoreTimer);
-  }, 2000)
+  }, 3000)
 };
 
 function replayButton(){
@@ -71,17 +71,16 @@ function replay(){
 }
 
 function buildWorld(){
-  sky.draw();
-  sky.redraw();
-  sky.move();
   ground.draw();
   ground.redraw();
   ground.move();
+  sky.draw();
+  sky.redraw();
+  sky.move();
   game.fillStyle = 'white';
   game.font = '15px MedievalSharp';
   game.fillText('Score: ' + score, 450, 20)
   character.add();
-  character.move();
   fire.draw();
   fire.spawn();
   if(replayCheck === true){
@@ -100,12 +99,12 @@ function characterJump (e) {
     character.y = 40;
     setTimeout(function(){
       character.y = 125;
-    }, 1200)
+    }, 1250)
   };
 };
 
 function checkCollision() {
-  if (character.x > fire.x && character.x < fire.x + 20 && character.y === 125 && fire.x > 0){
+  if (character.x > fire.x - (fire.width/2) && character.x < fire.x + 10 && character.y === 125 && fire.x > 0){
     gameOver();
   }
 };
