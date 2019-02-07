@@ -11,9 +11,12 @@ Help Westley & Buttercup avoid the terrors of the fire swamp in this endless run
 
 **BUILT USING:** HTML, CSS, JavaScript (Canvas)
 
+[**LET'S PLAY!**] (https://eliana-michelle.github.io/princess-bride-endless-runner/)
+
 **NEXT STEPS**
 
 1) Add lightning sand obstacle (same rules as flame spurts)
 2) Add ROUS obstacle (appears after score is reached -- stab to clear)
 3) Add parabolic equation/gravity to jump (make it look cleaner)
 4) Have obstacles appear at random intervals
+5) Add sprite animation to main characters so they look like they are running

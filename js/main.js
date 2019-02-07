@@ -104,7 +104,7 @@ function characterJump (e) {
 };
 
 function checkCollision() {
-  if (character.x > fire.x - (fire.width/2) && character.x < fire.x + 10 && character.y === 125 && fire.x > 0){
+  if (character.x > fire.x - (fire.width/2) && character.x < fire.x + 20 && character.y === 125 && fire.x > 0){
     gameOver();
   }
 };
