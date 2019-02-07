@@ -9,6 +9,14 @@ Help Westley & Buttercup avoid the terrors of the fire swamp in this endless run
 ![image of opening screen](imgs/openingscreen.png)
 ![image of game play](imgs/gameplayscreen.png)
 
+![image of Class declaration](imgs/classdeclaration.png)
+
+To keep the code tidy, all of the objects were created using Classes (starting with Scroll) and the animations were created using methods on those objects.
+
+![image of buildWorld function](imgs/functionbuildWorld.png)
+
+To start off the game, the graphics are drawn on the canvas using methods, the score board is added and the collision detector is activated. The "if" statement accounts for a restart of the game, to allow the player to continue on without it automatically finding a collision.
+
 **BUILT USING:** HTML, CSS, JavaScript (Canvas)
 
 **LET'S PLAY!** https://eliana-michelle.github.io/princess-bride-endless-runner/
