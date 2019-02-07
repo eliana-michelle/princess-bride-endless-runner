@@ -11,7 +11,7 @@ Help Westley & Buttercup avoid the terrors of the fire swamp in this endless run
 
 **BUILT USING:** HTML, CSS, JavaScript (Canvas)
 
-[**LET'S PLAY!**] (https://eliana-michelle.github.io/princess-bride-endless-runner/)
+**LET'S PLAY!** https://eliana-michelle.github.io/princess-bride-endless-runner/
 
 **NEXT STEPS**
 
